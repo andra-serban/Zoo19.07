@@ -1,0 +1,43 @@
+﻿@model Zoo.Models.Main
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Main</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ancora" class="control-label"></label>
+                <input asp-for="Ancora" class="form-control" />
+                <span asp-validation-for="Ancora" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idindivid" class="control-label"></label>
+                <input asp-for="Idindivid" class="form-control" />
+                <span asp-validation-for="Idindivid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Idzoo" class="control-label"></label>
+                <input asp-for="Idzoo" class="form-control" />
+                <span asp-validation-for="Idzoo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

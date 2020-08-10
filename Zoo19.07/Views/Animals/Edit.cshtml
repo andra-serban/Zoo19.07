@@ -1,0 +1,49 @@
+﻿@model Zoo.Models.Animal
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Animal</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="NumeComun" class="control-label"></label>
+                <input asp-for="NumeComun" class="form-control" />
+                <span asp-validation-for="NumeComun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Specie" class="control-label"></label>
+                <input asp-for="Specie" class="form-control" />
+                <span asp-validation-for="Specie" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GreutateMaxima" class="control-label"></label>
+                <input asp-for="GreutateMaxima" class="form-control" />
+                <span asp-validation-for="GreutateMaxima" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Poza" class="control-label"></label>
+                <input asp-for="Poza" class="form-control" />
+                <span asp-validation-for="Poza" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

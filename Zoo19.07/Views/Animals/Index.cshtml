@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Zoo.Models.Animal>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeComun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Specie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GreutateMaxima)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Poza)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeComun)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Specie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GreutateMaxima)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Poza)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

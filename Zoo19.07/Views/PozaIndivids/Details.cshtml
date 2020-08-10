@@ -1,0 +1,84 @@
+﻿@model Zoo.Models.PozaIndivid
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>PozaIndivid</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descriere)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descriere)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza3)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza3)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza4)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza4)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza5)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza5)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza6)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza6)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza7)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza7)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza8)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza8)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza9)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza9)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Poza10)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Poza10)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Idindivid">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
