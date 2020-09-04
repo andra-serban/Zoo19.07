@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Idindivid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idzoo)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Data)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Idindiv)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IdzooNavigation)
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Data)
+                @Html.DisplayFor(modelItem => item.Idindivid)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Idindiv.Bio)
+                @Html.DisplayFor(modelItem => item.Idzoo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdzooNavigation.Details)
+                @Html.DisplayNameFor(modelItem => item.Data)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Anchor">Edit</a> |
