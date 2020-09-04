@@ -2,22 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
-using System.Text;
-using System.IO;
 using Zoo19._07.BlobHelper;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
     public class AnimalsController : Controller
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public AnimalsController(ZooContext context)
+        public AnimalsController(zoodatabaseContext context)
         {
             _context = context;
         }
@@ -57,11 +54,10 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,NumeComun,Specie,GreutateMaxima,Poza")] Animal animal)
+        public async Task<IActionResult> Create([Bind("Id,CommonName,Specie,MaxWeight,Image")] Animal animal)
         {
-            
             BlobUpload blob = new BlobUpload();
-            animal.Poza = await blob.uploadToBlobAsync(animal.Poza);
+            animal.Image = await blob.uploadToBlobAsync(animal.Image);
 
             if (ModelState.IsValid)
             {
@@ -93,7 +89,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,NumeComun,Specie,GreutateMaxima,Poza")] Animal animal)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CommonName,Specie,MaxWeight,Image")] Animal animal)
         {
             if (id != animal.Id)
             {

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Zoo19._07.Models.IndividImages>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image10)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image1)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image2)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image3)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image4)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image5)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image6)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image7)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image8)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image9)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Image10)" style="height:200px;width:200px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Idindivid">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Idindivid">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Idindivid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

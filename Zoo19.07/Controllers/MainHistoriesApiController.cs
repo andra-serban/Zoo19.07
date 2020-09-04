@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MainIstoricApiController : ControllerBase
+    public class MainHistoriesApiController : ControllerBase
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public MainIstoricApiController(ZooContext context)
+        public MainHistoriesApiController(zoodatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/MainIstoricsApi
+        // GET: api/MainHistoriesApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MainIstoric>>> GetMainIstoric()
+        public async Task<ActionResult<IEnumerable<MainHistory>>> GetMainHistory()
         {
-            return await _context.MainIstoric.ToListAsync();
+            return await _context.MainHistory.ToListAsync();
         }
 
-        // GET: api/MainIstoricsApi/5
+        // GET: api/MainHistoriesApi/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<MainIstoric>> GetMainIstoric(int id)
+        public async Task<ActionResult<MainHistory>> GetMainHistory(string id)
         {
-            var mainIstoric = await _context.MainIstoric.FindAsync(id);
+            var mainHistory = await _context.MainHistory.FindAsync(id);
 
-            if (mainIstoric == null)
+            if (mainHistory == null)
             {
                 return NotFound();
             }
 
-            return mainIstoric;
+            return mainHistory;
         }
 
-        // PUT: api/MainIstoricsApi/5
+        // PUT: api/MainHistoriesApi/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMainIstoric(int id, MainIstoric mainIstoric)
+        public async Task<IActionResult> PutMainHistory(string id, MainHistory mainHistory)
         {
-            if (id != mainIstoric.Id)
+            if (id != mainHistory.Anchor)
             {
                 return BadRequest();
             }
 
-            _context.Entry(mainIstoric).State = EntityState.Modified;
+            _context.Entry(mainHistory).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Zoo19._07.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MainIstoricExists(id))
+                if (!MainHistoryExists(id))
                 {
                     return NotFound();
                 }
@@ -73,20 +73,20 @@ namespace Zoo19._07.Controllers
             return NoContent();
         }
 
-        // POST: api/MainIstoricsApi
+        // POST: api/MainHistoriesApi
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<MainIstoric>> PostMainIstoric(MainIstoric mainIstoric)
+        public async Task<ActionResult<MainHistory>> PostMainHistory(MainHistory mainHistory)
         {
-            _context.MainIstoric.Add(mainIstoric);
+            _context.MainHistory.Add(mainHistory);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (MainIstoricExists(mainIstoric.Id))
+                if (MainHistoryExists(mainHistory.Anchor))
                 {
                     return Conflict();
                 }
@@ -96,28 +96,28 @@ namespace Zoo19._07.Controllers
                 }
             }
 
-            return CreatedAtAction("GetMainIstoric", new { id = mainIstoric.Id }, mainIstoric);
+            return CreatedAtAction("GetMainHistory", new { id = mainHistory.Anchor }, mainHistory);
         }
 
-        // DELETE: api/MainIstoricsApi/5
+        // DELETE: api/MainHistoriesApi/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<MainIstoric>> DeleteMainIstoric(int id)
+        public async Task<ActionResult<MainHistory>> DeleteMainHistory(string id)
         {
-            var mainIstoric = await _context.MainIstoric.FindAsync(id);
-            if (mainIstoric == null)
+            var mainHistory = await _context.MainHistory.FindAsync(id);
+            if (mainHistory == null)
             {
                 return NotFound();
             }
 
-            _context.MainIstoric.Remove(mainIstoric);
+            _context.MainHistory.Remove(mainHistory);
             await _context.SaveChangesAsync();
 
-            return mainIstoric;
+            return mainHistory;
         }
 
-        private bool MainIstoricExists(int id)
+        private bool MainHistoryExists(string id)
         {
-            return _context.MainIstoric.Any(e => e.Id == id);
+            return _context.MainHistory.Any(e => e.Anchor == id);
         }
     }
 }

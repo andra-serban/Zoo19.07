@@ -1,4 +1,4 @@
-﻿@model Zoo.Models.Animal
+﻿@model Zoo19._07.Models.Animal
 
 @{
     ViewData["Title"] = "Create";
@@ -18,9 +18,9 @@
                 <span asp-validation-for="Id" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumeComun" class="control-label"></label>
-                <input asp-for="NumeComun" class="form-control" />
-                <span asp-validation-for="NumeComun" class="text-danger"></span>
+                <label asp-for="CommonName" class="control-label"></label>
+                <input asp-for="CommonName" class="form-control" />
+                <span asp-validation-for="CommonName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Specie" class="control-label"></label>
@@ -28,14 +28,14 @@
                 <span asp-validation-for="Specie" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GreutateMaxima" class="control-label"></label>
-                <input asp-for="GreutateMaxima" class="form-control" />
-                <span asp-validation-for="GreutateMaxima" class="text-danger"></span>
+                <label asp-for="MaxWeight" class="control-label"></label>
+                <input asp-for="MaxWeight" class="form-control" />
+                <span asp-validation-for="MaxWeight" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Poza" class="control-label"></label>
-                <input asp-for="Poza" class="form-control" />
-                <span asp-validation-for="Poza" class="text-danger"></span>
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

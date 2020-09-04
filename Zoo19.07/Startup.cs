@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07
 {
@@ -27,7 +27,7 @@ namespace Zoo19._07
         {
             services.AddControllersWithViews();
             //services.AddSingleton<ZooContext>(new ZooContext());
-            services.AddDbContext<ZooContext>();
+            services.AddDbContext<zoodatabaseContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

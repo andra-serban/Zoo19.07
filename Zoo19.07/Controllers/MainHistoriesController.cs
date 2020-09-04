@@ -9,23 +9,23 @@ using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
-    public class MainsController : Controller
+    public class MainHistoriesController : Controller
     {
         private readonly zoodatabaseContext _context;
 
-        public MainsController(zoodatabaseContext context)
+        public MainHistoriesController(zoodatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: Mains
+        // GET: MainHistories
         public async Task<IActionResult> Index()
         {
-            var zoodatabaseContext = _context.Main.Include(m => m.Idindiv).Include(m => m.IdzooNavigation);
+            var zoodatabaseContext = _context.MainHistory.Include(m => m.Idindiv).Include(m => m.IdzooNavigation);
             return View(await zoodatabaseContext.ToListAsync());
         }
 
-        // GET: Mains/Details/5
+        // GET: MainHistories/Details/5
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -33,19 +33,19 @@ namespace Zoo19._07.Controllers
                 return NotFound();
             }
 
-            var main = await _context.Main
+            var mainHistory = await _context.MainHistory
                 .Include(m => m.Idindiv)
                 .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
-            if (main == null)
+            if (mainHistory == null)
             {
                 return NotFound();
             }
 
-            return View(main);
+            return View(mainHistory);
         }
 
-        // GET: Mains/Create
+        // GET: MainHistories/Create
         public IActionResult Create()
         {
             ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio");
@@ -53,25 +53,25 @@ namespace Zoo19._07.Controllers
             return View();
         }
 
-        // POST: Mains/Create
+        // POST: MainHistories/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Anchor,Idindivid,Idzoo")] Main main)
+        public async Task<IActionResult> Create([Bind("Anchor,Idindivid,Idzoo,Data")] MainHistory mainHistory)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(main);
+                _context.Add(mainHistory);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
-            return View(main);
+            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
+            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
+            return View(mainHistory);
         }
 
-        // GET: Mains/Edit/5
+        // GET: MainHistories/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -79,24 +79,24 @@ namespace Zoo19._07.Controllers
                 return NotFound();
             }
 
-            var main = await _context.Main.FindAsync(id);
-            if (main == null)
+            var mainHistory = await _context.MainHistory.FindAsync(id);
+            if (mainHistory == null)
             {
                 return NotFound();
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
-            return View(main);
+            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
+            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
+            return View(mainHistory);
         }
 
-        // POST: Mains/Edit/5
+        // POST: MainHistories/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Anchor,Idindivid,Idzoo")] Main main)
+        public async Task<IActionResult> Edit(string id, [Bind("Anchor,Idindivid,Idzoo,Data")] MainHistory mainHistory)
         {
-            if (id != main.Anchor)
+            if (id != mainHistory.Anchor)
             {
                 return NotFound();
             }
@@ -105,12 +105,12 @@ namespace Zoo19._07.Controllers
             {
                 try
                 {
-                    _context.Update(main);
+                    _context.Update(mainHistory);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MainExists(main.Anchor))
+                    if (!MainHistoryExists(mainHistory.Anchor))
                     {
                         return NotFound();
                     }
@@ -121,12 +121,12 @@ namespace Zoo19._07.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
-            return View(main);
+            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
+            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
+            return View(mainHistory);
         }
 
-        // GET: Mains/Delete/5
+        // GET: MainHistories/Delete/5
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -134,32 +134,32 @@ namespace Zoo19._07.Controllers
                 return NotFound();
             }
 
-            var main = await _context.Main
+            var mainHistory = await _context.MainHistory
                 .Include(m => m.Idindiv)
                 .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
-            if (main == null)
+            if (mainHistory == null)
             {
                 return NotFound();
             }
 
-            return View(main);
+            return View(mainHistory);
         }
 
-        // POST: Mains/Delete/5
+        // POST: MainHistories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var main = await _context.Main.FindAsync(id);
-            _context.Main.Remove(main);
+            var mainHistory = await _context.MainHistory.FindAsync(id);
+            _context.MainHistory.Remove(mainHistory);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MainExists(string id)
+        private bool MainHistoryExists(string id)
         {
-            return _context.Main.Any(e => e.Anchor == id);
+            return _context.MainHistory.Any(e => e.Anchor == id);
         }
     }
 }

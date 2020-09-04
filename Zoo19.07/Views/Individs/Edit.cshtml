@@ -1,4 +1,4 @@
-﻿@model Zoo.Models.Individ
+﻿@model Zoo19._07.Models.Individ
 
 @{
     ViewData["Title"] = "Edit";
@@ -15,13 +15,13 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="Idanimal" class="control-label"></label>
-                <input asp-for="Idanimal" class="form-control" />
+                <select asp-for="Idanimal" class="form-control" asp-items="ViewBag.Idanimal"></select>
                 <span asp-validation-for="Idanimal" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Nume" class="control-label"></label>
-                <input asp-for="Nume" class="form-control" />
-                <span asp-validation-for="Nume" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Bio" class="control-label"></label>

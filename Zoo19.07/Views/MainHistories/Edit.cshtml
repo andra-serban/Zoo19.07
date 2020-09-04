@@ -1,4 +1,4 @@
-﻿@model Zoo.Models.MainIstoric
+﻿@model Zoo19._07.Models.MainHistory
 
 @{
     ViewData["Title"] = "Edit";
@@ -6,26 +6,21 @@
 
 <h1>Edit</h1>
 
-<h4>MainIstoric</h4>
+<h4>MainHistory</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Ancora" class="control-label"></label>
-                <input asp-for="Ancora" class="form-control" />
-                <span asp-validation-for="Ancora" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="Anchor" />
             <div class="form-group">
                 <label asp-for="Idindivid" class="control-label"></label>
-                <input asp-for="Idindivid" class="form-control" />
+                <select asp-for="Idindivid" class="form-control" asp-items="ViewBag.Idindivid"></select>
                 <span asp-validation-for="Idindivid" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Idzoo" class="control-label"></label>
-                <input asp-for="Idzoo" class="form-control" />
+                <select asp-for="Idzoo" class="form-control" asp-items="ViewBag.Idzoo"></select>
                 <span asp-validation-for="Idzoo" class="text-danger"></span>
             </div>
             <div class="form-group">

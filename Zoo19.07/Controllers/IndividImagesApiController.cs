@@ -5,54 +5,54 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PozaIndividsApiController : ControllerBase
+    public class IndividImagesApiController : ControllerBase
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public PozaIndividsApiController(ZooContext context)
+        public IndividImagesApiController(zoodatabaseContext context)
         {
             _context = context;
         }
 
-        // GET: api/PozaIndividsApi
+        // GET: api/IndividImagesApi
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PozaIndivid>>> GetPozaIndivid()
+        public async Task<ActionResult<IEnumerable<IndividImages>>> GetIndividImages()
         {
-            return await _context.PozaIndivid.ToListAsync();
+            return await _context.IndividImages.ToListAsync();
         }
 
-        // GET: api/PozaIndividsApi/5
+        // GET: api/IndividImagesApi/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PozaIndivid>> GetPozaIndivid(int id)
+        public async Task<ActionResult<IndividImages>> GetIndividImages(int id)
         {
-            var pozaIndivid = await _context.PozaIndivid.FindAsync(id);
+            var individImages = await _context.IndividImages.FindAsync(id);
 
-            if (pozaIndivid == null)
+            if (individImages == null)
             {
                 return NotFound();
             }
 
-            return pozaIndivid;
+            return individImages;
         }
 
-        // PUT: api/PozaIndividsApi/5
+        // PUT: api/IndividImagesApi/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPozaIndivid(int id, PozaIndivid pozaIndivid)
+        public async Task<IActionResult> PutIndividImages(int id, IndividImages individImages)
         {
-            if (id != pozaIndivid.Idindivid)
+            if (id != individImages.Idindivid)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pozaIndivid).State = EntityState.Modified;
+            _context.Entry(individImages).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Zoo19._07.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PozaIndividExists(id))
+                if (!IndividImagesExists(id))
                 {
                     return NotFound();
                 }
@@ -73,20 +73,20 @@ namespace Zoo19._07.Controllers
             return NoContent();
         }
 
-        // POST: api/PozaIndividsApi
+        // POST: api/IndividImagesApi
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<PozaIndivid>> PostPozaIndivid(PozaIndivid pozaIndivid)
+        public async Task<ActionResult<IndividImages>> PostIndividImages(IndividImages individImages)
         {
-            _context.PozaIndivid.Add(pozaIndivid);
+            _context.IndividImages.Add(individImages);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (PozaIndividExists(pozaIndivid.Idindivid))
+                if (IndividImagesExists(individImages.Idindivid))
                 {
                     return Conflict();
                 }
@@ -96,28 +96,28 @@ namespace Zoo19._07.Controllers
                 }
             }
 
-            return CreatedAtAction("GetPozaIndivid", new { id = pozaIndivid.Idindivid }, pozaIndivid);
+            return CreatedAtAction("GetIndividImages", new { id = individImages.Idindivid }, individImages);
         }
 
-        // DELETE: api/PozaIndividsApi/5
+        // DELETE: api/IndividImagesApi/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<PozaIndivid>> DeletePozaIndivid(int id)
+        public async Task<ActionResult<IndividImages>> DeleteIndividImages(int id)
         {
-            var pozaIndivid = await _context.PozaIndivid.FindAsync(id);
-            if (pozaIndivid == null)
+            var individImages = await _context.IndividImages.FindAsync(id);
+            if (individImages == null)
             {
                 return NotFound();
             }
 
-            _context.PozaIndivid.Remove(pozaIndivid);
+            _context.IndividImages.Remove(individImages);
             await _context.SaveChangesAsync();
 
-            return pozaIndivid;
+            return individImages;
         }
 
-        private bool PozaIndividExists(int id)
+        private bool IndividImagesExists(int id)
         {
-            return _context.PozaIndivid.Any(e => e.Idindivid == id);
+            return _context.IndividImages.Any(e => e.Idindivid == id);
         }
     }
 }

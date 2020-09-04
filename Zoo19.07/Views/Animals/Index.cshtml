@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Zoo.Models.Animal>
+﻿@model IEnumerable<Zoo19._07.Models.Animal>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,41 +13,42 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NumeComun)
+                @Html.DisplayNameFor(model => model.CommonName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Specie)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GreutateMaxima)
+                @Html.DisplayNameFor(model => model.MaxWeight)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Poza)
+                @Html.DisplayNameFor(model => model.Image)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumeComun)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specie)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GreutateMaxima)
-            </td>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.Poza)" style="height:200px;width:200px;" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommonName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Specie)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxWeight)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Image)" style="height:200px;width:200px;" />
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
     public class IndividsController : Controller
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public IndividsController(ZooContext context)
+        public IndividsController(zoodatabaseContext context)
         {
             _context = context;
         }
@@ -21,7 +21,8 @@ namespace Zoo19._07.Controllers
         // GET: Individs
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Individ.ToListAsync());
+            var zoodatabaseContext = _context.Individ.Include(i => i.IdNavigation).Include(i => i.IdanimalNavigation);
+            return View(await zoodatabaseContext.ToListAsync());
         }
 
         // GET: Individs/Details/5
@@ -33,6 +34,8 @@ namespace Zoo19._07.Controllers
             }
 
             var individ = await _context.Individ
+                .Include(i => i.IdNavigation)
+                .Include(i => i.IdanimalNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (individ == null)
             {
@@ -45,6 +48,8 @@ namespace Zoo19._07.Controllers
         // GET: Individs/Create
         public IActionResult Create()
         {
+            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description");
+            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName");
             return View();
         }
 
@@ -53,7 +58,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Idanimal,Nume,Bio")] Individ individ)
+        public async Task<IActionResult> Create([Bind("Id,Idanimal,Name,Bio")] Individ individ)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +66,8 @@ namespace Zoo19._07.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
+            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -77,6 +84,8 @@ namespace Zoo19._07.Controllers
             {
                 return NotFound();
             }
+            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
+            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -85,7 +94,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Idanimal,Nume,Bio")] Individ individ)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Idanimal,Name,Bio")] Individ individ)
         {
             if (id != individ.Id)
             {
@@ -112,6 +121,8 @@ namespace Zoo19._07.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
+            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -124,6 +135,8 @@ namespace Zoo19._07.Controllers
             }
 
             var individ = await _context.Individ
+                .Include(i => i.IdNavigation)
+                .Include(i => i.IdanimalNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (individ == null)
             {

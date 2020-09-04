@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
     public class ZooInfoesController : Controller
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public ZooInfoesController(ZooContext context)
+        public ZooInfoesController(zoodatabaseContext context)
         {
             _context = context;
         }
@@ -53,7 +53,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nume,Detalii")] ZooInfo zooInfo)
+        public async Task<IActionResult> Create([Bind("Id,Name,Details")] ZooInfo zooInfo)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nume,Detalii")] ZooInfo zooInfo)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Details")] ZooInfo zooInfo)
         {
             if (id != zooInfo.Id)
             {

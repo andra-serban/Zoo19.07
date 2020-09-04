@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Zoo19._07.Models.Main>
+﻿@model IEnumerable<Zoo19._07.Models.MainHistory>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,6 +13,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Idindiv)
             </th>
             <th>
@@ -24,6 +27,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Idindiv.Bio)
             </td>

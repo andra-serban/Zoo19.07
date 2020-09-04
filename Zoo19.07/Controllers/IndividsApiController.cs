@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
@@ -13,9 +13,9 @@ namespace Zoo19._07.Controllers
     [ApiController]
     public class IndividsApiController : ControllerBase
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public IndividsApiController(ZooContext context)
+        public IndividsApiController(zoodatabaseContext context)
         {
             _context = context;
         }

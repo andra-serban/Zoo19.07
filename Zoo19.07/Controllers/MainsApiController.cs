@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Zoo.Models;
+using Zoo19._07.Models;
 
 namespace Zoo19._07.Controllers
 {
@@ -13,9 +13,9 @@ namespace Zoo19._07.Controllers
     [ApiController]
     public class MainsApiController : ControllerBase
     {
-        private readonly ZooContext _context;
+        private readonly zoodatabaseContext _context;
 
-        public MainsApiController(ZooContext context)
+        public MainsApiController(zoodatabaseContext context)
         {
             _context = context;
         }
@@ -47,7 +47,7 @@ namespace Zoo19._07.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMain(string id, Main main)
         {
-            if (id != main.Ancora)
+            if (id != main.Anchor)
             {
                 return BadRequest();
             }
@@ -86,7 +86,7 @@ namespace Zoo19._07.Controllers
             }
             catch (DbUpdateException)
             {
-                if (MainExists(main.Ancora))
+                if (MainExists(main.Anchor))
                 {
                     return Conflict();
                 }
@@ -96,7 +96,7 @@ namespace Zoo19._07.Controllers
                 }
             }
 
-            return CreatedAtAction("GetMain", new { id = main.Ancora }, main);
+            return CreatedAtAction("GetMain", new { id = main.Anchor }, main);
         }
 
         // DELETE: api/MainsApi/5
@@ -117,7 +117,7 @@ namespace Zoo19._07.Controllers
 
         private bool MainExists(string id)
         {
-            return _context.Main.Any(e => e.Ancora == id);
+            return _context.Main.Any(e => e.Anchor == id);
         }
     }
 }
