@@ -18,6 +18,5 @@ namespace Zoo19._07.Models
         public string Image10 { get; set; }
         public string Description { get; set; }
 
-        public virtual Individ Individ { get; set; }
     }
 }

@@ -21,8 +21,7 @@ namespace Zoo19._07.Controllers
         // GET: Individs
         public async Task<IActionResult> Index()
         {
-            var zoodatabaseContext = _context.Individ.Include(i => i.IdNavigation).Include(i => i.IdanimalNavigation);
-            return View(await zoodatabaseContext.ToListAsync());
+            return View(await _context.Individ.ToListAsync());
         }
 
         // GET: Individs/Details/5
@@ -34,8 +33,6 @@ namespace Zoo19._07.Controllers
             }
 
             var individ = await _context.Individ
-                .Include(i => i.IdNavigation)
-                .Include(i => i.IdanimalNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (individ == null)
             {
@@ -48,8 +45,6 @@ namespace Zoo19._07.Controllers
         // GET: Individs/Create
         public IActionResult Create()
         {
-            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description");
-            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName");
             return View();
         }
 
@@ -66,8 +61,6 @@ namespace Zoo19._07.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
-            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -84,8 +77,6 @@ namespace Zoo19._07.Controllers
             {
                 return NotFound();
             }
-            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
-            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -121,8 +112,6 @@ namespace Zoo19._07.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Id"] = new SelectList(_context.IndividImages, "Idindivid", "Description", individ.Id);
-            ViewData["Idanimal"] = new SelectList(_context.Animal, "Id", "CommonName", individ.Idanimal);
             return View(individ);
         }
 
@@ -135,8 +124,6 @@ namespace Zoo19._07.Controllers
             }
 
             var individ = await _context.Individ
-                .Include(i => i.IdNavigation)
-                .Include(i => i.IdanimalNavigation)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (individ == null)
             {

@@ -57,18 +57,6 @@ namespace Zoo19._07.Models
                 entity.Property(e => e.Idanimal).HasColumnName("IDAnimal");
 
                 entity.Property(e => e.Name).IsRequired();
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Individ)
-                    .HasForeignKey<Individ>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Individ_IndividImages");
-
-                entity.HasOne(d => d.IdanimalNavigation)
-                    .WithMany(p => p.Individ)
-                    .HasForeignKey(d => d.Idanimal)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Individ_Animal");
             });
 
             modelBuilder.Entity<IndividImages>(entity =>
@@ -76,8 +64,7 @@ namespace Zoo19._07.Models
                 entity.HasKey(e => e.Idindivid);
 
                 entity.Property(e => e.Idindivid)
-                    .HasColumnName("IDIndivid")
-                    .ValueGeneratedNever();
+                    .HasColumnName("IDIndivid");
 
                 entity.Property(e => e.Description).IsRequired();
             });
@@ -92,42 +79,18 @@ namespace Zoo19._07.Models
 
                 entity.Property(e => e.Idzoo).HasColumnName("IDZoo");
 
-                entity.HasOne(d => d.Idindiv)
-                    .WithMany(p => p.Main)
-                    .HasForeignKey(d => d.Idindivid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Main_Individ");
-
-                entity.HasOne(d => d.IdzooNavigation)
-                    .WithMany(p => p.Main)
-                    .HasForeignKey(d => d.Idzoo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Main_ZooInfo");
             });
 
             modelBuilder.Entity<MainHistory>(entity =>
             {
                 entity.HasKey(e => e.Anchor);
 
-                entity.Property(e => e.Anchor).HasMaxLength(100);
+                entity.Property(e => e.Anchor).HasMaxLength(50);
 
-                entity.Property(e => e.Data).IsRequired();
+                entity.Property(e => e.Data).HasColumnType("date");
 
                 entity.Property(e => e.Idindivid).HasColumnName("IDIndivid");
 
-                entity.Property(e => e.Idzoo).HasColumnName("IDZoo");
-
-                entity.HasOne(d => d.Idindiv)
-                    .WithMany(p => p.MainHistory)
-                    .HasForeignKey(d => d.Idindivid)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MainHistory_Individ");
-
-                entity.HasOne(d => d.IdzooNavigation)
-                    .WithMany(p => p.MainHistory)
-                    .HasForeignKey(d => d.Idzoo)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_MainHistory_ZooInfo");
             });
 
             modelBuilder.Entity<ZooInfo>(entity =>

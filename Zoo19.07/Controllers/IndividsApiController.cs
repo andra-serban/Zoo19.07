@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,14 +21,14 @@ namespace Zoo19._07.Controllers
             _context = context;
         }
 
-        // GET: api/IndividsApi
+        // GET: api/Individs1
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Individ>>> GetIndivid()
         {
             return await _context.Individ.ToListAsync();
         }
 
-        // GET: api/IndividsApi/5
+        // GET: api/Individs1/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Individ>> GetIndivid(int id)
         {
@@ -41,7 +42,7 @@ namespace Zoo19._07.Controllers
             return individ;
         }
 
-        // PUT: api/IndividsApi/5
+        // PUT: api/Individs1/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -73,7 +74,7 @@ namespace Zoo19._07.Controllers
             return NoContent();
         }
 
-        // POST: api/IndividsApi
+        // POST: api/Individs1
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -99,7 +100,7 @@ namespace Zoo19._07.Controllers
             return CreatedAtAction("GetIndivid", new { id = individ.Id }, individ);
         }
 
-        // DELETE: api/IndividsApi/5
+        // DELETE: api/Individs1/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Individ>> DeleteIndivid(int id)
         {

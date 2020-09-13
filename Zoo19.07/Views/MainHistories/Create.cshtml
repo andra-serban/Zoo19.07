@@ -19,11 +19,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Idindivid" class="control-label"></label>
-                <select asp-for="Idindivid" class ="form-control" asp-items="ViewBag.Idindivid"></select>
+                <input asp-for="Idindivid" class="form-control" />
+                <span asp-validation-for="Idindivid" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Idzoo" class="control-label"></label>
-                <select asp-for="Idzoo" class ="form-control" asp-items="ViewBag.Idzoo"></select>
+                <label asp-for="IdZoo" class="control-label"></label>
+                <input asp-for="IdZoo" class="form-control" />
+                <span asp-validation-for="IdZoo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Data" class="control-label"></label>

@@ -12,23 +12,23 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Idindivid)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Idindivid)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdZoo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdZoo)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Data)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Data)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idindiv)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idindiv.Bio)
-        </dd class>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdzooNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdzooNavigation.Details)
-        </dd class>
     </dl>
     
     <form asp-action="Delete">

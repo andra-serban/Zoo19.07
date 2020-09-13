@@ -21,8 +21,7 @@ namespace Zoo19._07.Controllers
         // GET: Mains
         public async Task<IActionResult> Index()
         {
-            var zoodatabaseContext = _context.Main.Include(m => m.Idindiv).Include(m => m.IdzooNavigation);
-            return View(await zoodatabaseContext.ToListAsync());
+            return View(await _context.Main.ToListAsync());
         }
 
         // GET: Mains/Details/5
@@ -34,8 +33,6 @@ namespace Zoo19._07.Controllers
             }
 
             var main = await _context.Main
-                .Include(m => m.Idindiv)
-                .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
             if (main == null)
             {
@@ -48,8 +45,6 @@ namespace Zoo19._07.Controllers
         // GET: Mains/Create
         public IActionResult Create()
         {
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio");
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details");
             return View();
         }
 
@@ -66,8 +61,6 @@ namespace Zoo19._07.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
             return View(main);
         }
 
@@ -84,8 +77,6 @@ namespace Zoo19._07.Controllers
             {
                 return NotFound();
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
             return View(main);
         }
 
@@ -121,8 +112,6 @@ namespace Zoo19._07.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", main.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", main.Idzoo);
             return View(main);
         }
 
@@ -135,8 +124,6 @@ namespace Zoo19._07.Controllers
             }
 
             var main = await _context.Main
-                .Include(m => m.Idindiv)
-                .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
             if (main == null)
             {

@@ -56,18 +56,6 @@ namespace Zoo19._07.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Idindivid,Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8,Image9,Image10,Description")] IndividImages individImages)
         {
-            BlobUpload blob = new BlobUpload();
-            if (individImages.Image1 != null) individImages.Image1 = await blob.uploadToBlobAsync(individImages.Image1);
-            if (individImages.Image2 != null) individImages.Image2 = await blob.uploadToBlobAsync(individImages.Image2);
-            if (individImages.Image3 != null) individImages.Image3 = await blob.uploadToBlobAsync(individImages.Image3);
-            if (individImages.Image4 != null) individImages.Image4 = await blob.uploadToBlobAsync(individImages.Image4);
-            if (individImages.Image5 != null) individImages.Image5 = await blob.uploadToBlobAsync(individImages.Image5);
-            if (individImages.Image6 != null) individImages.Image6 = await blob.uploadToBlobAsync(individImages.Image6);
-            if (individImages.Image7 != null) individImages.Image7 = await blob.uploadToBlobAsync(individImages.Image7);
-            if (individImages.Image8 != null) individImages.Image8 = await blob.uploadToBlobAsync(individImages.Image8);
-            if (individImages.Image9 != null) individImages.Image9 = await blob.uploadToBlobAsync(individImages.Image9);
-            if (individImages.Image10 != null) individImages.Image10 = await blob.uploadToBlobAsync(individImages.Image10);
-
             if (ModelState.IsValid)
             {
                 _context.Add(individImages);
@@ -100,6 +88,18 @@ namespace Zoo19._07.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Idindivid,Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8,Image9,Image10,Description")] IndividImages individImages)
         {
+            BlobUpload blob = new BlobUpload();
+            if (individImages.Image1 != null) individImages.Image1 = await blob.uploadToBlobAsync(individImages.Image1);
+            if (individImages.Image2 != null) individImages.Image2 = await blob.uploadToBlobAsync(individImages.Image2);
+            if (individImages.Image3 != null) individImages.Image3 = await blob.uploadToBlobAsync(individImages.Image3);
+            if (individImages.Image4 != null) individImages.Image4 = await blob.uploadToBlobAsync(individImages.Image4);
+            if (individImages.Image5 != null) individImages.Image5 = await blob.uploadToBlobAsync(individImages.Image5);
+            if (individImages.Image6 != null) individImages.Image6 = await blob.uploadToBlobAsync(individImages.Image6);
+            if (individImages.Image7 != null) individImages.Image7 = await blob.uploadToBlobAsync(individImages.Image7);
+            if (individImages.Image8 != null) individImages.Image8 = await blob.uploadToBlobAsync(individImages.Image8);
+            if (individImages.Image9 != null) individImages.Image9 = await blob.uploadToBlobAsync(individImages.Image9);
+            if (individImages.Image10 != null) individImages.Image10 = await blob.uploadToBlobAsync(individImages.Image10);
+
             if (id != individImages.Idindivid)
             {
                 return NotFound();

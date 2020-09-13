@@ -21,8 +21,7 @@ namespace Zoo19._07.Controllers
         // GET: MainHistories
         public async Task<IActionResult> Index()
         {
-            var zoodatabaseContext = _context.MainHistory.Include(m => m.Idindiv).Include(m => m.IdzooNavigation);
-            return View(await zoodatabaseContext.ToListAsync());
+            return View(await _context.MainHistory.ToListAsync());
         }
 
         // GET: MainHistories/Details/5
@@ -34,8 +33,6 @@ namespace Zoo19._07.Controllers
             }
 
             var mainHistory = await _context.MainHistory
-                .Include(m => m.Idindiv)
-                .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
             if (mainHistory == null)
             {
@@ -48,8 +45,6 @@ namespace Zoo19._07.Controllers
         // GET: MainHistories/Create
         public IActionResult Create()
         {
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio");
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details");
             return View();
         }
 
@@ -58,7 +53,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Anchor,Idindivid,Idzoo,Data")] MainHistory mainHistory)
+        public async Task<IActionResult> Create([Bind("Anchor,Idindivid,IdZoo,Data")] MainHistory mainHistory)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +61,6 @@ namespace Zoo19._07.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
             return View(mainHistory);
         }
 
@@ -84,8 +77,6 @@ namespace Zoo19._07.Controllers
             {
                 return NotFound();
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
             return View(mainHistory);
         }
 
@@ -94,7 +85,7 @@ namespace Zoo19._07.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Anchor,Idindivid,Idzoo,Data")] MainHistory mainHistory)
+        public async Task<IActionResult> Edit(string id, [Bind("Anchor,Idindivid,IdZoo,Data")] MainHistory mainHistory)
         {
             if (id != mainHistory.Anchor)
             {
@@ -121,8 +112,6 @@ namespace Zoo19._07.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Idindivid"] = new SelectList(_context.Individ, "Id", "Bio", mainHistory.Idindivid);
-            ViewData["Idzoo"] = new SelectList(_context.ZooInfo, "Id", "Details", mainHistory.Idzoo);
             return View(mainHistory);
         }
 
@@ -135,8 +124,6 @@ namespace Zoo19._07.Controllers
             }
 
             var mainHistory = await _context.MainHistory
-                .Include(m => m.Idindiv)
-                .Include(m => m.IdzooNavigation)
                 .FirstOrDefaultAsync(m => m.Anchor == id);
             if (mainHistory == null)
             {

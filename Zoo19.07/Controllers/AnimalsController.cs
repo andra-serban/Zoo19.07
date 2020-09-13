@@ -56,9 +56,6 @@ namespace Zoo19._07.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,CommonName,Specie,MaxWeight,Image")] Animal animal)
         {
-            BlobUpload blob = new BlobUpload();
-            animal.Image = await blob.uploadToBlobAsync(animal.Image);
-
             if (ModelState.IsValid)
             {
                 _context.Add(animal);
@@ -91,6 +88,9 @@ namespace Zoo19._07.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,CommonName,Specie,MaxWeight,Image")] Animal animal)
         {
+            BlobUpload blob = new BlobUpload();
+            animal.Image = await blob.uploadToBlobAsync(animal.Image);
+
             if (id != animal.Id)
             {
                 return NotFound();
